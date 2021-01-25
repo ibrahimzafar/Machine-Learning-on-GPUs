@@ -6,10 +6,11 @@ NIGHTLIES=18
 LOWEST=17
 
 CTK_VERSION=10.1
+PYTHON_VERSION=3.7
 
 RAPIDS_VERSION="0.$STABLE"
 RAPIDS_RESULT=$STABLE
- 
+
 echo "PLEASE READ"
 echo "********************************************************************************************************"
 echo "Changes:"
@@ -37,11 +38,11 @@ install_RAPIDS () {
         chmod +x Miniconda3-4.5.4-Linux-x86_64.sh
         bash ./Miniconda3-4.5.4-Linux-x86_64.sh -b -f -p /usr/local
 
-        #pin python3.6
-        echo "python 3.6.*" > /usr/local/conda-meta/pinned
+        #pin $PYTHON_VERSION
+        echo "python $PYTHON_VERSION.*" > /usr/local/conda-meta/pinned
 
         #Installing another conda package first something first seems to fix https://github.com/rapidsai/rapidsai-csp-utils/issues/4
-        conda install --channel defaults conda python=3.6 --yes
+        conda install --channel defaults conda python=$PYTHON_VERSION --yes
         conda update -y -c conda-forge -c defaults --all
         conda install -y --prefix /usr/local -c conda-forge -c defaults openssl six
 
@@ -74,7 +75,7 @@ install_RAPIDS () {
             #     dask-cudf cusignal
             conda install -y --prefix /usr/local \
                 -c rapidsai -c nvidia -c conda-forge -c defaults \
-                rapids-blazing=$RAPIDS_VERSION python=3.6 cudatoolkit=$CTK_VERSION dask-cudf tensorflow-gpu-2.2 pynvml
+                rapids-blazing=$RAPIDS_VERSION python=$PYTHON_VERSION cudatoolkit=$CTK_VERSION dask-cudf tensorflow-gpu=2.2 pynvml
 
         # fi
           
@@ -83,7 +84,7 @@ install_RAPIDS () {
         cp /usr/local/lib/libcudf.so /usr/lib/libcudf.so
         cp /usr/local/lib/librmm.so /usr/lib/librmm.so
         cp /usr/local/lib/libnccl.so /usr/lib/libnccl.so
-        cp /usr/local/lib/python3.6/dist-packages/llvmlite/binding/libllvmlite.so /usr/lib/libllvmlite.so
+        cp /usr/local/lib/python$PYTHON_VERSION/dist-packages/llvmlite/binding/libllvmlite.so /usr/lib/libllvmlite.so
         echo "Copying RAPIDS compatible xgboost"  
         cp /usr/local/lib/libxgboost.so /usr/lib/libxgboost.so
     fi
