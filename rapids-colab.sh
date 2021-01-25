@@ -73,9 +73,16 @@ install_RAPIDS () {
             #     python=3.6 gdal=3.0.4 llvm=9.0.0 cudatoolkit=$CTK_VERSION \
             #     cudf=$RAPIDS_VERSION cuml cugraph cuspatial gcsfs pynvml xgboost=1.1.0dev.rapidsai$RAPIDS_VERSION \
             #     dask-cudf cusignal
+
+            # Without blazingSQL
             conda install -y --prefix /usr/local \
                 -c rapidsai -c nvidia -c conda-forge -c defaults \
-                rapids-blazing=$RAPIDS_VERSION python=$PYTHON_VERSION cudatoolkit=$CTK_VERSION dask-cudf tensorflow-gpu=2.2 pynvml
+                rapids=$RAPIDS_VERSION python=$PYTHON_VERSION cudatoolkit=$CTK_VERSION dask-cudf tensorflow-gpu=2.2 pynvml
+
+            # With blazingSQL
+            # conda install -y --prefix /usr/local \
+            #     -c rapidsai -c nvidia -c conda-forge -c defaults \
+            #     rapids-blazing=$RAPIDS_VERSION python=$PYTHON_VERSION cudatoolkit=$CTK_VERSION dask-cudf tensorflow-gpu=2.2 pynvml
 
         # fi
           
