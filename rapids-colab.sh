@@ -27,16 +27,16 @@ install_RAPIDS () {
     # echo "Checking for GPU type:"
     # python rapidsai-csp-utils/colab/env-check.py
 
-    if [ ! -f Miniconda3-4.5.4-Linux-x86_64.sh ]; then
+    if [ ! -f Miniconda3-4.9.2-Linux-x86_64.sh ]; then
         echo "Removing conflicting packages, will replace with RAPIDS compatible versions"
         # remove existing xgboost and dask installs
         pip uninstall -y xgboost dask distributed
 
         # intall miniconda
         echo "Installing conda"
-        wget https://repo.continuum.io/miniconda/Miniconda3-4.5.4-Linux-x86_64.sh
-        chmod +x Miniconda3-4.5.4-Linux-x86_64.sh
-        bash ./Miniconda3-4.5.4-Linux-x86_64.sh -b -f -p /usr/local
+        wget https://repo.continuum.io/miniconda/Miniconda3-4.9.2-Linux-x86_64.sh
+        chmod +x Miniconda3-4.9.2-Linux-x86_64.sh
+        bash ./Miniconda3-4.9.2-Linux-x86_64.sh -b -f -p /usr/local
 
         #pin python3.6.X
         echo "python 3.6.*" > /usr/local/conda-meta/pinned
