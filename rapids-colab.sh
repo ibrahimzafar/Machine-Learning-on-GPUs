@@ -38,8 +38,8 @@ install_RAPIDS () {
         chmod +x Miniconda3-4.5.4-Linux-x86_64.sh
         bash ./Miniconda3-4.5.4-Linux-x86_64.sh -b -f -p /usr/local
 
-        #pin $PYTHON_VERSION
-        echo "python $PYTHON_VERSION.*" > /usr/local/conda-meta/pinned
+        #pin python3.6.X
+        echo "python 3.6.*" > /usr/local/conda-meta/pinned
 
         #Installing another conda package first something first seems to fix https://github.com/rapidsai/rapidsai-csp-utils/issues/4
         conda install --channel defaults conda python=$PYTHON_VERSION --yes
@@ -84,7 +84,7 @@ install_RAPIDS () {
         cp /usr/local/lib/libcudf.so /usr/lib/libcudf.so
         cp /usr/local/lib/librmm.so /usr/lib/librmm.so
         cp /usr/local/lib/libnccl.so /usr/lib/libnccl.so
-        cp /usr/local/lib/python$PYTHON_VERSION/dist-packages/llvmlite/binding/libllvmlite.so /usr/lib/libllvmlite.so
+        cp /usr/local/lib/python3.6/dist-packages/llvmlite/binding/libllvmlite.so /usr/lib/libllvmlite.so
         echo "Copying RAPIDS compatible xgboost"  
         cp /usr/local/lib/libxgboost.so /usr/lib/libxgboost.so
     fi
