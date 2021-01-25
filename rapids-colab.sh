@@ -23,8 +23,8 @@ echo "Enjoy using RAPIDS!  If you have any issues with or suggestions for RAPIDS
 
 
 install_RAPIDS () {
-    echo "Checking for GPU type:"
-    python rapidsai-csp-utils/colab/env-check.py
+    # echo "Checking for GPU type:"
+    # python rapidsai-csp-utils/colab/env-check.py
 
     if [ ! -f Miniconda3-4.5.4-Linux-x86_64.sh ]; then
         echo "Removing conflicting packages, will replace with RAPIDS compatible versions"
